@@ -58,11 +58,11 @@ def poc(url,user,pwd):
 		print(file_write('log.txt',url+'  连接出错1 '+user+':'+pwd))
 		return ''
 	try:
-		token = re.search('<input type="hidden" name="token" value=".*?"',re1.content.decode()).group().replace('<input type="hidden" name="token" value="','').replace('"','')
+		token = re.search('<input type="hidden" name="token" value="(.*?)"',re1.content.decode()).group(1)
 	except:
 		token = ''
 	try:
-		setsession = re.search('<input type="hidden" name="set_session" value=".*?"',re1.content.decode()).group().replace('<input type="hidden" name="set_session" value="','').replace('"','')
+		setsession = re.search('<input type="hidden" name="set_session" value="(.*?)"',re1.content.decode()).group(1)
 	except:
 		setsession = ''
 	if setsession != '':
