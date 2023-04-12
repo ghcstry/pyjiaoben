@@ -61,18 +61,14 @@ def bt(url):
 		print(log(url+' ----- '+str(response.status_code)+' ----- '+title+' | '+server+' : '+xpb))
 		return False
 	try:
-		title = re.search('<title.*>.*</title>',content,re.I).group()
+		title = re.search('<title.*?>(.*?)</title>',content,re.I).group(1)
 	except:
 		try:
-			title = re.search('<title.*>.*</title>',content.replace('\n',''),re.I).group()
+			title = re.search('<title.*?>(.*?)</title>',content.replace('\n',''),re.I).group(1)
 		except:
 			title = '！标题匹配失败！'
 			print(log(url+' ----- '+str(response.status_code)+' ----- '+title+' | '+server+' : '+xpb))
 			return False
-	try:
-		title = re.sub('<title.*?>|</title>|\r|\t','',title,flags=re.I)
-	except:
-		title = '！获取标题错误！'
 	print(log(url+' ----- '+str(response.status_code)+' ----- '+title+' | '+server+' : '+xpb))
 
 def pl(url,se):
